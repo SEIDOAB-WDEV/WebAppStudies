@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'AppMusicRazor' " />
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\Studies\" />
+    <Folder Include="Pages\Studies\Model\" />
+    <Folder Include="Pages\Studies\Selection\" />
+    <Folder Include="Pages\Studies\Picker\" />
+    <Folder Include="Pages\Studies\Modals\" />
+    <Folder Include="Pages\Studies\FormEdit\" />
+    <Folder Include="Pages\Studies\FormValidation\" />
+    <Folder Include="SeidoHelpers\" />
+    <Folder Include="Pages\Studies\WebApiCom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Pages\" />
+    <None Remove="Pages\Studies\" />
+    <None Remove="Pages\Studies\Model\" />
+    <None Remove="Pages\Studies\Selection\" />
+    <None Remove="Pages\Studies\Picker\" />
+    <None Remove="Pages\Studies\Modals\" />
+    <None Remove="Pages\Studies\FormEdit\" />
+    <None Remove="Pages\Studies\FormValidation\" />
+    <None Remove="SeidoHelpers\" />
+    <None Remove="Pages\Studies\WebApiCom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Encryptions\Encryptions.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

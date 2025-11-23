@@ -1,0 +1,61 @@
+﻿@page
+@model WebAppStudies.Pages.ModalsLaunchModel
+@{
+    ViewData["Title"] = "Study ModalsLaunch";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@attribute [IgnoreAntiforgeryToken]
+
+<!-- Page to launch Modals -->
+<div class="container px-4 py-4" id="modals">
+    <h2 class="pb-2 border-bottom">Launch Modals and using partial</h2>
+    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+        <div class="col-md-7 col-lg-8">
+            @foreach (var item in Model.Messages)
+            {
+                <span class="col-md-7 col-lg-8 alert alert-info" role="alert">
+                    @item
+                </span>
+            }
+        </div>
+    </div>
+    <partial name="_PartialModalsLaunch" model="Model.Messages" />
+    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+        <div class="col-md-7 col-lg-8">
+            <form method="post" class="needs-validation" novalidate>
+
+                <!-- This is where selected item id will be stored -->
+                <input type="hidden" name="groupId" data-seido-selected-item-id-target />
+
+                <!-- Button trigger modal with explicit post button -->
+                <button type="button" class="w-100 btn btn-primary my-1" 
+                        data-bs-toggle="modal" data-bs-target="#submitModal"
+                        data-seido-modal-title="submitModal" data-seido-modal-body="submitModal body"
+                        data-seido-selected-item-id="@Guid.NewGuid()">
+                    Launch Modal
+                </button>
+
+                <!-- Modal with submit OK button within a form Post-->
+                <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="softModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-danger" id="softModalLabel">Confirm deletion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Hello from modal
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" asp-page-handler="Select" class="btn btn-primary btn-danger">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

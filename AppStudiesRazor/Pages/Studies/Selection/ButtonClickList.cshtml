@@ -1,0 +1,110 @@
+﻿@page
+@model WebAppStudies.Pages.ButtonClickListModel
+@{
+    ViewData["Title"] = "Study ButtonClickList";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@attribute [IgnoreAntiforgeryToken]
+<!-- Page list-of-quotes -->
+<div class="container px-4 py-4" id="list-of-quotes">
+    <h2 class="pb-2 border-bottom">List of famous quotes</h2>
+
+    <p>Below are some famous quotes about love, work and the fact that tomorrow is another day. Select one that your friend likes.</p>
+    <form class="needs-validation" method="post" novalidate>
+
+        <!-- This is the parameter that will be sent to Post when item is clicked -->
+        <input type="hidden" name="quoteId" data-seido-selected-item-id-target />
+
+        <div class="row mb-2 text-center">
+            <div class="col-md-12 themed-grid-head-col">
+                Sequential list
+            </div>
+        </div>
+
+        @for (int i = 0; i < Model.Quotes1.Count; i++)
+        {
+            <div class="row mb-2 text-center">
+
+                <!-- this is needed for the modelbinding -->
+                <input type="hidden" asp-for="Quotes1[i].QuoteId" />
+                <input type="hidden" asp-for="Quotes1[i].Quote" />
+                <input type="hidden" asp-for="Quotes1[i].Author" />
+
+                <div class="col-md-10 themed-grid-col">
+                    @Model.Quotes1[i].Quote
+                    <div class="col-md-16  text-end">@Model.Quotes1[i].Author</div>
+                </div>
+                <div class="col-md-2 themed-grid-col">
+
+                    <!-- Button sets quoteId <input> tag and trigger post -->
+                    <button type="submit" class="btn btn-success btn-sm m-1"
+                            data-seido-selected-item-id="@Model.Quotes1[i].QuoteId">
+                        Select
+                    </button>
+
+                </div>
+            </div>
+        }
+
+        <div class="row mb-2 text-center">
+            <div class="col-md-12 themed-grid-head-col">
+                Non-sequential list
+            </div>
+        </div>
+        @foreach (var item in Model.Quotes2)
+        {
+            <div class="row mb-2 text-center">
+                <!-- this is needed for the modelbinding -->
+                <!-- NOTE: Follow the name, .Index and [] syntax very carefully as you have no asp-for support -->
+                <input type="hidden" name="Quotes2.Index" value="@item.QuoteId" />
+                <input type="hidden" name="Quotes2[@item.QuoteId].QuoteId" value="@item.QuoteId" class="form-control" />
+                <input type="hidden" name="Quotes2[@item.QuoteId].Quote" value="@item.Quote" class="form-control" />
+                <input type="hidden" name="Quotes2[@item.QuoteId].Author" value="@item.Author" class="form-control" />
+
+                <div class="col-md-10 themed-grid-col">
+                    @item.Quote
+                    <div class="col-md-16  text-end">@item.Author</div>
+                </div>
+                <div class="col-md-2 themed-grid-col">
+
+                    <!-- Button sets quoteId <input> tag and trigger post -->
+                    <button type="submit" class="btn btn-success btn-sm m-1"
+                            data-seido-selected-item-id="@item.QuoteId">
+                        Select
+                    </button>
+                </div>
+            </div>
+        }
+    </form>
+    <div class="row mb-2 text-center">
+        <div class="col-md-10 themed-grid-head-col">
+            Selected items
+        </div>
+    </div>
+    @if (Model.SelectedQuote != null)
+    {
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @Model.SelectedQuote?.Quote
+                <div class="col-md-16  text-end">@Model.SelectedQuote?.Author</div>
+            </div>
+        </div>
+    }
+
+    <!-- inital template that can be easily hidden -->
+    <div class="d-none">
+        <h2 class="pb-2 border-bottom">TEMPLATE</h2>
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                Before you marry a person, you should first make them use a computer with slow Internet to see who they really are.
+                <div class="col-md-16  text-end">Will Ferrell</div>
+            </div>
+            <div class="col-md-2 themed-grid-col">
+                <a href="#" class="btn btn-success btn-sm" type="button">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

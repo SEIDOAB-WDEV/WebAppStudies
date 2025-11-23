@@ -1,0 +1,130 @@
+﻿@page
+@model WebAppStudies.Pages.EnumPickModel
+@{
+    ViewData["Title"] = "Study EnumPick";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@attribute [IgnoreAntiforgeryToken]
+<!-- Page list-of-quotes -->
+<div class="container px-4 py-4" id="list-of-quotes">
+    <h2 class="pb-2 border-bottom">List of famous quotes</h2>
+
+    <p>Below are some famous quotes about love, work and the fact that tomorrow is another day. Select one that your friend likes.</p>
+    <form class="needs-validation" method="post" novalidate>
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                <label for="animals" class="form-label">Enum Select</label>
+                <select asp-for="SelectedAnimal1" asp-items="Html.GetEnumSelectList<WebAppStudies.Pages.Animals>()" class="form-control" id="animals">
+                    <option value="">Pick one</option>
+                </select>
+            </div>
+            <div class="col-md-2 themed-grid-col">
+                <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            </div>
+        </div>
+
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @foreach (var item in Html.GetEnumSelectList<WebAppStudies.Pages.Animals>())
+                {
+                    <div class="form-check">
+                        <input asp-for="SelectedAnimal2" class="form-check-input" type="radio" id="animal-@item.Value" value="@item.Value">
+                        <label class="form-check-label" for="animal-@item.Value">
+                            @item.Text
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="col-md-2 themed-grid-col">
+                <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            </div>
+        </div>
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @foreach (var item in Html.GetEnumSelectList<WebAppStudies.Pages.Animals>())
+                {
+                    <div class="form-check">
+                        <input name="SelectedAnimal3" class="form-check-input" type="checkbox" id="animal-@item.Value" value="@item.Value"
+                        @(Model.SelectedAnimal3.Contains(Enum.Parse<WebAppStudies.Pages.Animals>(item.Text))?"checked='checked'":"")>
+
+                        <label class="form-check-label" for="animal-@item.Value">
+                            @item.Text  @(Model.SelectedAnimal3.Contains(Enum.Parse<WebAppStudies.Pages.Animals>(item.Text)))
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="col-md-2 themed-grid-col">
+                <button class="btn btn-success btn-sm" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div class="row mb-2 text-center">
+        <div class="col-md-10 themed-grid-head-col">
+            Selected items
+        </div>
+    </div>
+    @if (Model.SelectedAnimal1 != null)
+    {
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @Model.SelectedAnimal1
+            </div>
+        </div>
+    }
+    @if (Model.SelectedAnimal2 != null)
+    {
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @Model.SelectedAnimal2.ToString()
+            </div>
+        </div>
+    }
+    @foreach (var animal in Model.SelectedAnimal3)
+    {
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                @animal.ToString()
+            </div>
+        </div>
+    }
+
+    <!-- inital template that can be easily hidden -->
+    <div class="d-none">
+        <h2 class="pb-2 border-bottom">TEMPLATE</h2>
+        <form class="needs-validation" method="post" novalidate>
+            <div class="row mb-2 text-center">
+                <div class="col-md-10 themed-grid-col">
+                    <label for="quoteId" class="form-label">Enum Select</label>
+                    <select class="form-select" name="quoteId" id="quoteId"></select>
+                </div>
+                <div class="col-md-2 themed-grid-col">
+                    <button class="btn btn-success btn-sm" type="submit">Submit</button>
+                </div>
+            </div>
+            <div class="row mb-2 text-center">
+                <div class="col-md-10 themed-grid-col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row mb-2 text-center">
+            <div class="col-md-10 themed-grid-col">
+                Submitted Quote
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

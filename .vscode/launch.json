@@ -1,0 +1,48 @@
+//launch-docker-all
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "AppStudiesMvc",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/AppStudiesMvc/bin/Debug/net9.0/AppStudiesMvc.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/AppStudiesMvc",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "https://localhost:5201;http://localhost:5200"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/AppStudiesMvc/Views"
+            }
+        },
+        {
+            "name": "AppStudiesRazor",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/AppStudiesRazor/bin/Debug/net9.0/AppStudiesRazor.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/AppStudiesRazor",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "https://localhost:5101;http://localhost:5100"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/AppStudiesRazor/Views"
+            }
+        }
+    ]
+}

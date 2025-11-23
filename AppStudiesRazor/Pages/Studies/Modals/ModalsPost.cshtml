@@ -1,0 +1,68 @@
+﻿@page
+@model WebAppStudies.Pages.Studies.ModalsPostModel
+@{
+    ViewData["Title"] = "Study ModalsPost";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@attribute [IgnoreAntiforgeryToken]
+
+
+<!-- Page page-handlers -->
+<div class="container px-4 py-4" id="page-handlers">
+    <h2 class="pb-2 border-bottom">Test to Fire Page Handlers</h2>
+
+    <p>Click below to fire the corresponing handlers in the model</p>
+    <p>@Model.Message</p>
+
+
+    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+        <div class="col-md-7 col-lg-10">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="groupName" class="form-label">Id</label>
+                        <input asp-for="Latin.id" type="text" class="form-control" id="latin_id" required>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="genre" class="form-label">Sentence</label>
+                        <input asp-for="Latin.Sentence" type="text" class="form-control" id="latin_sentence" required>
+                    </div>
+
+                </div>
+
+                <input type="hidden" name="id" value="@Model.Latin.id" />
+
+                <!-- Simple PostEdit without modal confirmation -->
+                <button class="w-100 btn btn-primary my-4" type="submit">Save without confirmation</button>
+
+                <!-- Button to trigger modal confirmation with modal in the form tag -->
+                <button type="button" class="w-100 btn btn-primary my-1" 
+                        data-bs-toggle="modal" data-bs-target="#latinModal"
+                        data-seido-modal-title="@Model.Latin.id" 
+                        data-seido-modal-body="About to save @Model.Latin.id" 
+                        data-seido-modal-cancel="Close" data-seido-modal-Ok="Save">
+                    Save with modal confirmation
+                </button>
+
+                <div class="modal fade" id="latinModal" tabindex="-1" aria-labelledby="softModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-danger" id="softModalLabel">Confirm deletion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Hello from modal
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" asp-page-handler="Save" class="btn btn-primary btn-danger">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
