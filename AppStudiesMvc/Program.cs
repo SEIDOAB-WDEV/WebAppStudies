@@ -1,6 +1,8 @@
 ﻿using Services;
 using Configuration.Extensions;
 using Encryption.Extensions;
+using Microsoft.Extensions.Options;
+using Configuration.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -58,6 +60,11 @@ app.MapGet("/hello", () =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapGet("/versioninfo", (IOptions<VersionOptions> versionOptions) =>
+{
+    return Results.Json(versionOptions.Value);
+});
 
 app.Run();
 

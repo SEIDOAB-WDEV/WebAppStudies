@@ -1,6 +1,8 @@
 ﻿using Services;
 using Configuration.Extensions;
 using Encryption.Extensions;
+using Microsoft.Extensions.Options;
+using Configuration.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +60,11 @@ app.MapGet("/hello", () =>
     var _envMyOwn = Environment.GetEnvironmentVariable("MyOwn");
 
     return $"Hello World!\nASPNETCORE_ENVIRONMENT: {_env}\nMyOwn: {_envMyOwn}";
+});
+
+app.MapGet("/versioninfo", (IOptions<VersionOptions> versionOptions) =>
+{
+    return Results.Json(versionOptions.Value);
 });
 
 app.Run();
