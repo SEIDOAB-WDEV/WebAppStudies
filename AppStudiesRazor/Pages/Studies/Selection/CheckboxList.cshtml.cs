@@ -42,7 +42,7 @@ namespace WebAppStudies.Pages
         {
             //Use the Service
             Quotes1 = _service.ReadQuotes().Take(3).Select(q => new FamousQuoteChkd(q) { Checked = false }).ToList();
-            Quotes2 = _service.ReadQuotes().TakeLast(3).Select(q => new FamousQuoteChkd(q) { Checked = true }).ToList();
+            Quotes2 = _service.ReadQuotes().TakeLast(3).Select(q => new FamousQuoteChkd(q) { Checked = false }).ToList();
 
             return Page();
         }
