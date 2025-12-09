@@ -49,16 +49,5 @@ namespace WebAppStudies.Pages.Studies
             //Page is rendered as the postback is part of the form tag
             return Page();
         }
-
-        public IActionResult OnPostSaveLatin([FromBody] ModalData modalData)
-        {
-            Message = $"PostSaveLatin() fired with id: {Guid.Parse(modalData.postdata)}";
-
-            //Page not reloaded as Post is outside a form via javascript
-            return Page();
-            
-            //To reload, e.g 
-            //return Partial("Studies/Modals/_PartialModalsLaunch", Messages);
-        }
     }
 }

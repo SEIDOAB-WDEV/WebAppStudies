@@ -31,7 +31,7 @@
 
                 </div>
 
-                <input type="hidden" name="id" value="@Model.Latin.id" />
+                <input type="hidden" name="id" data-seido-selected-item-id-target/>
 
                 <!-- Simple PostEdit without modal confirmation -->
                 <button class="w-100 btn btn-primary my-4" type="submit">Save without confirmation</button>
@@ -39,6 +39,7 @@
                 <!-- Button to trigger modal confirmation with modal in the form tag -->
                 <button type="button" class="w-100 btn btn-primary my-1" 
                         data-bs-toggle="modal" data-bs-target="#latinModal"
+                        data-seido-selected-item-id="@Model.Latin.id"
                         data-seido-modal-title="@Model.Latin.id" 
                         data-seido-modal-body="About to save @Model.Latin.id" 
                         data-seido-modal-cancel="Close" data-seido-modal-Ok="Save">
