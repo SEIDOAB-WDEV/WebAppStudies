@@ -33,33 +33,6 @@ function launchModal (event)  {
 
     btn_ok.addEventListener('click', async event => {
 
-      if (mod_post_url)
-      {
-        console.log(mod_post_url);
-        try {
-          //send the data using post and await the reply
-          const response = await fetch(mod_post_url, {
-              method: 'post',
-              headers: { "Content-Type": "application/json" },
-              body: mod_post_data ? JSON.stringify(mod_post_data) : null
-          });
-          const result = await response.text();
-          console.log(result);
-    
-          if (!response.ok) {
-            throw new Error(`Transmission error ${response.status} posting to ${mod_post_url}`);
-          }
-
-          //refresh the partial tag
-            console.log(document.getElementById(mod_post_refresh_tag));
-          if (mod_post_refresh_tag) {
-            document.getElementById(mod_post_refresh_tag).outerHTML = result;
-          }
-        }
-        catch (e) {
-           alert(e);
-        }
-      }
 
       var modinst = bootstrap.Modal.getInstance(modal);
       modinst.hide();
