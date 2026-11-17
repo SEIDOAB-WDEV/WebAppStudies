@@ -1,0 +1,9 @@
+In the directory open a terminal and type
+dotnet new class -n TestClass
+
+New Razor Page with Model. 
+dotnet new page -n TestPage
+
+Mvc 
+dotnet new view -n TestView
+dotnet new mvccontroller -n TestController

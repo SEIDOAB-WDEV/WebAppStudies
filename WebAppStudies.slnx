@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="AppStudiesRazor\AppStudiesRazor.csproj" />
+  <Project Path="Models\Models.csproj" />
+  <Project Path="Configuration\Configuration.csproj" />
+  <Project Path="Services\Services.csproj" />
+  <Project Path="AppStudiesMvc\AppStudiesMvc.csproj" />
+  <Project Path="Encryptions\Encryptions.csproj" />
+</Solution>
