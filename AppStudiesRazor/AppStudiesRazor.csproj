@@ -8,7 +8,6 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'AppMusicRazor' " />
   <ItemGroup>
     <Content Remove="wwwroot\" />
   </ItemGroup>
